@@ -1,15 +1,10 @@
-# Ignore Play! working directory #
-bin/
-/db
-.eclipse
-/lib/
-/logs/
-/modules
-/project/target
-/target
-tmp/
-test-result
-server.pid
-*.eml
-/dist/
-.cache
+.gitignore
+.class
+.cvsignore
+
+# Ignore Tomcat
+tomcat/.classpath
+tomcat/.cvsignore
+tomcat/.project
+tomcat/.tomcatplugin
+tomcat/work
