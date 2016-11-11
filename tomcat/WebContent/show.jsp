@@ -14,6 +14,9 @@
 <h1>NATS Messages</h1>
 <%@ page import="java.util.*,com.logimethods.nats.*" %>
 <h2>Time on server: <%= new Date() %></h2>
+<form action="index.html" method="POST">
+	<input type="submit" value="(re)Connect" />
+</form>
 <p>
 <% 
 	// Set refresh, autoload time as 5 seconds

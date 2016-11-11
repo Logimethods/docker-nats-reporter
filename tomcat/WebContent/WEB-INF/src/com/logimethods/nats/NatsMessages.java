@@ -21,13 +21,19 @@ import io.nats.client.*;
 public class NatsMessages {
 	
 	static final List<String> messages = new LinkedList<String>();
+	static Connection nc;
 	
 	public static void createConnection(String natsUrl, String subject) {
 		ConnectionFactory cf = new ConnectionFactory(natsUrl);
 		try {
+			messages.clear();
 			messages.add("CREATE CONNECTION to " + natsUrl);
 			
-			Connection nc = cf.createConnection();
+			if (nc != null) {
+				nc.close();
+			}
+			
+			nc = cf.createConnection();
 			
 			nc.subscribe(subject, m -> {
 				messages.add(0, new String(m.getData()));

@@ -16,7 +16,11 @@
 <h2>Time on server: <%= new Date() %></h2>
 <p>
 <% 
-NatsMessages.createConnection("nats://localhost:4221", "*");
+NatsMessages.createConnection(request.getParameter("nats_url"), request.getParameter("subject"));
+out.println("Connection to " + request.getParameter("nats_url") + " for " + request.getParameter("subject"));
 %>
 </p>
+<form action="show.jsp" method="POST">
+	<input type="submit" value="Show" />
+</form>
 </body></html>
