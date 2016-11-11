@@ -8,7 +8,6 @@
 package com.logimethods.nats;
 
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
 
@@ -40,7 +39,7 @@ public class NatsMessages {
 			nc = cf.createConnection();
 			
 			nc.subscribe(subject, m -> {
-				messages.add(0, new String(m.getData()));
+				messages.add(0, "("+ m.getSubject() + ", " + new String(m.getData()) + ')');
 			});
 			
 			messages.add("READY");
