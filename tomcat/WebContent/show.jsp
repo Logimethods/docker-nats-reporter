@@ -19,8 +19,8 @@
 </form>
 <p>
 <% 
-	// Set refresh, autoload time as 5 seconds
-	response.setIntHeader("Refresh", 5);
+	// Set refresh, autoload time as 1 second
+	response.setIntHeader("Refresh", 1);
 	for (String message: NatsMessages.getMessages()) {
 		out.println(message + "<BR>");
 	}

@@ -16,7 +16,7 @@
 <h2>Time on server: <%= new Date() %></h2>
 <p>
 <% 
-NatsMessages.createConnection(request.getParameter("nats_url"), request.getParameter("subject"));
+NatsMessages.createConnection(request.getParameter("nats_url"), request.getParameter("subject"), Integer.parseInt(request.getParameter("limit")));
 out.println("Connection to " + request.getParameter("nats_url") + " for " + request.getParameter("subject"));
 %>
 </p>

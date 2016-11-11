@@ -20,13 +20,17 @@ import io.nats.client.*;
  */
 public class NatsMessages {
 	
-	static final List<String> messages = new LinkedList<String>();
+	static List<String> messages;
 	static Connection nc;
 	
-	public static void createConnection(String natsUrl, String subject) {
+	public static void createConnection(String natsUrl, String subject, int limit) {
 		ConnectionFactory cf = new ConnectionFactory(natsUrl);
 		try {
-			messages.clear();
+			if (messages != null) {
+				messages.clear();
+			}
+			
+			messages = new LimitedQueue<String>(limit);
 			messages.add("CREATE CONNECTION to " + natsUrl);
 			
 			if (nc != null) {
