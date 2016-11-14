@@ -1,6 +1,11 @@
 FROM tomcat:8.5-alpine
 
-COPY tomcat/lib/*.jar lib/
+RUN apk --update add openjdk8
 
-RUN mkdir -p webapps/nats-reporter
 COPY tomcat/WebContent/ webapps/nats-reporter/
+
+RUN cd webapps/nats-reporter/WEB-INF/src \
+	&& find -name "*.java" > sources.txt \
+	&& javac -cp ../lib/*:  -d ../classes @sources.txt \
+	&& cd ../../../.. \
+	&& apk del openjdk8

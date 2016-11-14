@@ -39,7 +39,8 @@ public class NatsMessages {
 			nc = cf.createConnection();
 			
 			nc.subscribe(subject, m -> {
-				messages.add(0, "("+ m.getSubject() + ", " + new String(m.getData()) + ')');
+				final String message = "("+ m.getSubject() + ", " + new String(m.getData()) + ')';
+				messages.add(0, message);
 			});
 			
 			messages.add("READY");
@@ -49,7 +50,6 @@ public class NatsMessages {
 	}
 	
 	public static List<String> getMessages() {
-//		messages.add("messAge");
 		return messages;
 	}
 }
